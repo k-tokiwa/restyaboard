@@ -66,6 +66,27 @@ exit
 ```
 #### Nginx
 
+Nginx config. http and https redirect+backend
 ```
-server 8080
+http {
+    server {
+      listen 443 ssl;
+      server_name https://FrontDNS.com;
+      index index.html index.htm;server
+
+      location / {
+        proxy_pass https://backend/;
+        #index index.php index.html index.htm;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_set_header   Host              $http_host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   Host https://FrontDNS.com;
+        proxy_redirect     off;
+      }
+    }
+    upstream backend {
+      server http://PrivateIP:8080;
+    }
+}
 ```
