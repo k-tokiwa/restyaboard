@@ -69,7 +69,11 @@ Nginx config. http and https redirect+backend
 http {
     server {
       listen 443 ssl;
-      server_name https://FrontDNS.com;
+      ssl_certificate      www.example.com.crt;
+      ssl_certificate_key  www.example.com.key;
+      ssl_protocols        SSLv3 TLSv1;
+      ssl_ciphers          HIGH:!ADH:!MD5;
+      server_name https://www.example.com;
       index index.html index.htm;server
 
       location / {
@@ -79,7 +83,7 @@ http {
         proxy_set_header   Host              $http_host;
         proxy_set_header   X-Real-IP         $remote_addr;
         proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-        proxy_set_header   Host https://FrontDNS.com;
+        proxy_set_header   Host https://www.example.com;
         proxy_redirect     off;
       }
     }
