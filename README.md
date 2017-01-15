@@ -38,8 +38,6 @@ Available version is [https://github.com/RestyaPlatform/board/releases](https://
 
 ```
 ENV restyaboard_version=select_version
-or
-ENV restyaboard_version=latest
 ```
 
 In case of upgrade version, rebuild image and recreate container.
