@@ -13,7 +13,7 @@ Build Restyaboard in Docker.
 ```
 Build image and Run container using docker-compose.
 git clone https://github.com/k-tokiwa/restyaboard.git
-cd docker-restyaboard
+cd restyaboard
 docker-compose up -d
 ```
 
